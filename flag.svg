@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="650" height="1235">
+<defs>
+<g id="s5">
+<g id="s1">
+<g id="p4">
+<g id="p2">
+<path d="M-0.5,0H0V0.3z" transform="scale(0.0616) rotate(-18,-0.5,0)" fill="#fff" id="p1"/>
+<use xlink:href="#p1" transform="scale(1,-1)"/>
+</g>
+<use xlink:href="#p2" transform="rotate(72)"/>
+</g>
+<use xlink:href="#p2" transform="rotate(-72)"/>
+<use xlink:href="#p4" transform="rotate(144)"/>
+</g>
+<use xlink:href="#s1" y="-0.252"/>
+<use xlink:href="#s1" y="-0.126"/>
+<use xlink:href="#s1" y="0.126"/>
+<use xlink:href="#s1" y="0.252"/>
+</g>
+</defs>
+<rect height="1235" width="650" fill="#FFA1A6"/>
+<path d="m75,0v1235m100,0V0m100,0v1235m100,0V0m100,0v1235m100,0V0" stroke="#fff" stroke-width="50"/>
+<rect height="494" width="350" fill="#B2D8FF"/>
+<g id="u" transform="translate(175,247) scale(650)">
+<g id="x4">
+<g id="s6">
+<use xlink:href="#s5" y="-0.063"/>
+<use xlink:href="#s1" y="0.315"/>
+</g>
+<use xlink:href="#s5" x="0.054"/>
+<use xlink:href="#s6" x="0.108"/>
+<use xlink:href="#s5" x="0.162"/>
+</g>
+<use xlink:href="#x4" x="-0.216"/>
+<use xlink:href="#s6" x="0.216"/>
+</g>
+</svg>
