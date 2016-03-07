@@ -3,10 +3,27 @@
   <head>
     <title> TRUMP JUMP </title>
   </head>
+  <style>
+	#america {
+		float: left;
+		border: 1px solid black;
+		margin: 10px 20px 0px;
+	}
+	#score {
+		float: left;
+		margin: 50px 50px 0px;
+		padding: 10px;
+		border: 1px solid black;
+		font-size: 20px;
+	}	
+  </style>
   <body>
-    <svg id="america" height="650" width="342" style="border: 1px solid">
+    <svg id="america" height="600" width="342">
       <image x="-29" y="0" height="650" width="400" xlink:href="flag.svg" />
+	  <image id="trump" x="200" y="300" height="60" width="60" xlink:href="mini-trump.png"/>
     </svg>
+
+	<div id="score">Score: 212</div>
   </body>
   <script src="svg.js"></script>
 </html>
