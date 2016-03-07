@@ -92,7 +92,9 @@ var addPlatform = function addPlatform(x, y) {
 
 var popPlatforms = function popPlatforms(n) {
 	for (i = 0; i < n; i++) {
-		addPlatform(Math.random()*PICWIDTH, PICHEIGHT/4 * (i + Math.random()));
+		x = Math.random() * (PICWIDTH - PWIDTH); 
+		y = PICHEIGHT/4 * (i + Math.random());
+		addPlatform(x, y);
 	}
 };
 
@@ -104,7 +106,7 @@ var checkPlatform = function checkPlatform() {
 		rect.x = parseInt(p.getAttribute('x')) + offsetLeft + 0.1 * TWIDTH;
 		console.log(rect.x);
 		rect.y = parseInt(p.getAttribute('y')) + offsetTop;
-		rect.height = PHEIGHT;
+		rect.height = 4;
 		rect.width = 20;
 		if ( pic.checkIntersection(trump, rect) ) { 
 			return i;
