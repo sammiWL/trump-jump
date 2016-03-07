@@ -5,7 +5,9 @@ var PHEIGHT = 15;
 var TWIDTH = 80;
 var THEIGHT = 80;
 
-var pic=document.getElementById('america');
+var pic = document.getElementById('america');
+var offsetTop = pic.getBoundingClientRect().top - document.body.getBoundingClientRect().top;
+var offsetLeft = pic.getBoundingClientRect().left - document.body.getBoundingClientRect().left;
 var trump = document.getElementById('trump');
 var score = document.getElementById('score');
 var platforms = [];
@@ -89,9 +91,10 @@ var checkPlatform = function checkPlatform() {
 	for (i = 0; i < platforms.length; i++) {
 		p = platforms[i];
 		rect = pic.createSVGRect();
-		rect.x = parseInt(p.getAttribute('x')) + 30;
-		rect.y = parseInt(p.getAttribute('y')) + 10;
-		rect.height = 15;
+		rect.x = parseInt(p.getAttribute('x')) + offsetLeft + 0.1 * TWIDTH;
+		console.log(rect.x);
+		rect.y = parseInt(p.getAttribute('y')) + offsetTop;
+		rect.height = PHEIGHT;
 		rect.width = 20;
 		if ( pic.checkIntersection(trump, rect) ) { 
 			return i;
