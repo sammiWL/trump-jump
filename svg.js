@@ -6,33 +6,37 @@ var score = document.getElementById('score');
 
 var intervalID;
 
-var setup = function setup() {
-	clearInterval(intervalID);
-	score.innerHTML = '0';
+var setup = function setup(e) {
+    clearInterval(intervalID);
+    score.innerHTML = '0';
+    
+    var scoreNum = 0;
 
-	var scoreNum = 0;
+    var up = true;
+    var trumpX = pic.width.baseVal.value / 2;
+    var trumpY = pic.height.baseVal.value / 2;
+    var jumpLimit = 150;
+    var curJump = 0;
 
-	var up = true;
-	var trumpX = pic.width.baseVal.value / 2;
-	var trumpY = pic.height.baseVal.value / 2;
-	var jumpLimit = 150;
-	var curJump = 0;
+    pic.addEventListener('mousemove', function (e) {
+	trumpX = e.clientX - 55;
+    });
+			   
+    var trumpJump = function trumpJump() {
+	
+	trump.setAttribute('x', trumpX);
+	trump.setAttribute('y', trumpY);
 
-	var trumpJump = function trumpJump() {
-		trump.setAttribute('x', trumpX);
-		trump.setAttribute('y', trumpY);
+	if ( up ) { trumpY -= 1; curJump += 1 }
+	else { trumpY += 1 }
 
-		if ( up ) { trumpY -= 1; curJump += 1 }
-		else { trumpY += 1 }
+	if ( curJump >= jumpLimit ) { up = false; }
 
-		if ( curJump >= jumpLimit ) { up = false; }
+	if ( trumpY > pic.height.baseVal.value ) { console.log("Game Over") }
 
-		if ( trumpY > pic.height.baseVal.value ) { console.log("Game Over") }
 
-		document.onmousemove {}
-
-	}
-	intervalID = window.setInterval( trumpJump, 5 );
+    }
+    intervalID = window.setInterval( trumpJump, 5 );
 };
 
 var p1=document.createElementNS('http://www.w3.org/2000/svg','rect');
@@ -49,5 +53,6 @@ pic.appendChild(p1);
 var platforms=[]
 platforms.push(p1);
 console.log(platforms);
+
 
 setup();
