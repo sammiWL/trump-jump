@@ -1,5 +1,7 @@
 console.log('ayy');
 
+var PICWIDTH = 342;
+var PICHEIGHT = 600;
 var PWIDTH = 70;
 var PHEIGHT = 15;
 var TWIDTH = 80;
@@ -29,12 +31,14 @@ var setup = function setup(e) {
     pic.addEventListener('mousemove', function (e) {
 		trumpX = e.clientX - 55;
     });
-		
+	
+	/**	
     for (i = 1; i < 2; i++) {
 		for (j = 0; j < 1; j++) {
 	    	addPlatform( 91*i, 585 - (j * 150) );
 		}
-    }
+    }*/
+	popPlatforms(4);
 			   
     var trumpJump = function trumpJump() {
 		trump.setAttribute('x', trumpX);
@@ -84,6 +88,12 @@ var addPlatform = function addPlatform(x, y) {
 	platforms.push(p);
 	pic.appendChild(p);
 	console.log(platforms);
+};
+
+var popPlatforms = function popPlatforms(n) {
+	for (i = 0; i < n; i++) {
+		addPlatform(Math.random()*PICWIDTH, PICHEIGHT/4 * (i + Math.random()));
+	}
 };
 
 /** Returns index of platform hit, otherwise -1. */
