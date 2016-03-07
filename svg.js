@@ -13,8 +13,8 @@ var setup = function setup(e) {
     var scoreNum = 0;
 
     var up = true;
-    var trumpX = pic.width.baseVal.value / 2;
-    var trumpY = pic.height.baseVal.value / 2;
+    var trumpX = 200;//pic.width.baseVal.value / 2;
+    var trumpY = 400;//pic.height.baseVal.value / 2;
     var jumpLimit = 150;
     var curJump = 0;
 
@@ -32,9 +32,17 @@ var setup = function setup(e) {
 
 	if ( curJump >= jumpLimit ) { up = false; }
 
-	if ( trumpY > pic.height.baseVal.value ) { console.log("Game Over") }
+	if ( trumpY > pic.height.baseVal.value ) {
+	    console.log("Game Over");
+	    clearInterval(intervalID);
+	}
 
-
+	if (!up) {
+	    if (pic.checkIntersection(trump, rect)) {
+		console.log("I MADE IT GREAT AGAIN");
+	    }
+	}
+	
     }
     intervalID = window.setInterval( trumpJump, 5 );
 };
@@ -49,6 +57,13 @@ p1.setAttribute('width',70);
 p1.setAttribute('height',15);
 
 pic.appendChild(p1);
+
+var rect = pic.createSVGRect();
+rect.x = 200;
+rect.y = 400;
+rect.height = 15;
+rect.width = 70;
+
 
 var platforms=[]
 platforms.push(p1);
