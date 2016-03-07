@@ -27,7 +27,10 @@ var setup = function setup(e) {
 	trump.setAttribute('x', trumpX);
 	trump.setAttribute('y', trumpY);
 
-	if ( up ) { trumpY -= 1; curJump += 1 }
+	if ( up ) {
+	    trumpY -= 1;
+	    curJump += 1;
+	}
 	else { trumpY += 1 }
 
 	if ( curJump >= jumpLimit ) { up = false; }
@@ -40,6 +43,8 @@ var setup = function setup(e) {
 	if (!up) {
 	    if (pic.checkIntersection(trump, rect)) {
 		console.log("I MADE IT GREAT AGAIN");
+		up=!up;
+		curJump=0;
 	    }
 	}
 	
@@ -60,10 +65,10 @@ p1.setAttribute('height',15);
 pic.appendChild(p1);
 
 var rect = pic.createSVGRect();
-rect.x = 200;
-rect.y = 400;
+rect.x = 230;
+rect.y = 410;
 rect.height = 15;
-rect.width = 70;
+rect.width = 20;
 
 
 var platforms=[]
