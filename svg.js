@@ -45,6 +45,7 @@ var setup = function setup(e) {
 	
     }
     intervalID = window.setInterval( trumpJump, 5 );
+
 };
 
 var p1=document.createElementNS('http://www.w3.org/2000/svg','rect');
