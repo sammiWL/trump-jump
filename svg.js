@@ -21,31 +21,13 @@ var setup = function setup(e) {
     var curJump = 0;
 
     pic.addEventListener('mousemove', function (e) {
-	trumpX = e.clientX - 55;
+		trumpX = e.clientX - 55;
     });
     var p1, i;
 
-    for (i = 0; i < 4; i++) {
-	p1=document.createElementNS('http://www.w3.org/2000/svg','rect');
-	console.log(i);
-	p1.setAttribute('x',91 * i);
-	p1.setAttribute('y',585);
-	p1.setAttribute('fill','#ffd700');
-	p1.setAttribute('stroke','#c78201');
-	p1.setAttribute('width',70);
-	p1.setAttribute('height',15);
-	platforms.push(p1);
-	pic.appendChild(p1);
-	console.log(platforms);
-	rect = pic.createSVGRect();
-	rect.x = 91 * i + 30 ;
-	rect.y = 585 + 10;
-	rect.height = 15;
-	rect.width = 20;
-	rectA.push(rect);
-	console.log(rectA);
+    for (i = 0; i < 4; i+=2) {
+		addPlatform( 91*i, 585 );
     }
-   
 			   
     var trumpJump = function trumpJump() {
 	
@@ -66,32 +48,49 @@ var setup = function setup(e) {
 	}
 
 	if (!up) {
-	    if (check_platform()) {
+	    if (checkPlatform() != -1) {
 		console.log("I MADE IT GREAT AGAIN");
-		up=!up;
-		curJump=0;
+		up = !up;
+		curJump = 0;
 	    }
 	}
 	//console.log(curJump);
-    }
+    };
     intervalID = window.setInterval( trumpJump, 5 );
-
 };
 
-var check_platform = function check_platform() {
-    var count = 0;
-    var	on = false;
-    //console.log("HI");
-    while (count < rectA.length) {
-	on = on || (pic.checkIntersection(trump, rectA[count]));
-	//console.log(on);
-	count++;
-    }
-    return on;
-}
+var addPlatform = function addPlatform(x, y) {
+	p = document.createElementNS('http://www.w3.org/2000/svg','rect');
+	p.setAttribute('x', x);
+	p.setAttribute('y', y);
+	p.setAttribute('fill', '#ffd700');
+	p.setAttribute('stroke', '#c78201');
+	p.setAttribute('width', 70);
+	p.setAttribute('height', 15);
+	platforms.push(p);
+	pic.appendChild(p);
+	console.log(platforms);
+};
 
-var move_platforms = function move_platforms() {
+/** Returns index of platform hit, otherwise -1. */
+var checkPlatform = function checkPlatform() {
+	for (i = 0; i < platforms.length; i++) {
+		p = platforms[i];
+		rect = pic.createSVGRect();
+		rect.x = parseInt(p.getAttribute('x')) + 30;
+		rect.y = parseInt(p.getAttribute('y')) + 10;
+		rect.height = 15;
+		rect.width = 20;
+		if ( pic.checkIntersection(trump, rect) ) { 
+			return i;
+		}
+	}
+	return -1;
+};
+
+	
+var movePlatforms = function movePlatforms() {
     
-}
+};
 
 setup();
