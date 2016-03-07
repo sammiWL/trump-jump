@@ -148,23 +148,6 @@ var create_platforms = function create_platform() {
     }
 }
 
-var check_platforms = function check_platforms() {
-    var count = 0;
-    var	change = 0;
-    
-    //console.log("HI");
-    while (count < rectA.length) {
-	if (pic.checkIntersection(trump, rectA[count])) {
-	    change = parseInt(platforms[count].getAttribute('y'));
-	    break;
-	}
-	//console.log(on);
-	count++;
-    }
-    console.log(change + "THIS IS THE CHANGE");
-    return change;
-}
-
 var move_platforms = function move_platforms(changeY) {
     var count = 0;
     var prevY = 0;
