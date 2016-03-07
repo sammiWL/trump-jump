@@ -29,7 +29,7 @@ var setup = function setup() {
 
 		if ( trumpY > pic.height.baseVal.value ) { console.log("Game Over") }
 
-		document.onmousemove {}
+		//document.onmousemove {}
 
 	}
 	intervalID = window.setInterval( trumpJump, 5 );
