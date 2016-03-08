@@ -29,6 +29,22 @@ var setup = function setup(e) {
     var jumpLimit = 110;
     var curJump = 0;
     var down = 0;
+    /*var trumpChin = pic.createSVGRect();
+    trumpChin.x = trumpX + 93; 
+    trumpChin.y = trumpY + 135;
+    trumpChin.height = 30;
+    trumpChin.width = 60;*/
+
+    var trumpChin = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    trumpChin.setAttribute("x", trumpX + 35); 
+    trumpChin.setAttribute("y", trumpY + 35);
+    trumpChin.setAttribute("fill", "black");
+    trumpChin.setAttribute("stroke", "red");
+    trumpChin.setAttribute("width","10");
+    trumpChin.setAttribute("height","10");
+    //img.setAttribute("xlink:href","dvd.jpg");
+    pic.appendChild(trumpChin);
+
     
     pic.addEventListener('mousemove', function (e) {
 	trumpX = e.clientX - 55;
@@ -45,7 +61,12 @@ var setup = function setup(e) {
     var trumpJump = function trumpJump() {
 	trump.setAttribute('x', trumpX);
 	trump.setAttribute('y', trumpY);
-
+	trumpChin.setAttribute("x", trumpX + 35); 
+	trumpChin.setAttribute("y", trumpY + 55);
+	/*trumpChin.x =  + 30 ;
+	trumpChin.y = y + 10;
+	trumpChin.height = 1;
+	trumpChin.width = 20;*/
 	if ( up ) {
 	    if (trumpY>-10) {
 		trumpY -= 2;
@@ -76,18 +97,16 @@ var setup = function setup(e) {
 	}
 
 	if (!up) {
-	    var cp = checkPlatform();
-	    if (cp != -1) {
-		
+	    //var cp = checkPlatform(trumpChin);
+	    //if (cp != -1) {
+	    if (check_platforms(trumpChin)) {
 		up = !up;
 		curJump = 0;
-		//console.log("CHANGE " + (550 - trumpY));
-		console.log("TRUMPY " + (565 - trumpY));
+		console.log(trumpX);
 		scoreNum = parseInt(score.innerHTML);
 		score.innerHTML = scoreNum + 560 - trumpY;
-		//move_platforms((400 - trumpY));
-		down = 0;
-		console.log(down);
+		//move_platforms(1);
+		
 		clean_platforms();
 		
 		/*create_platforms();
@@ -108,7 +127,8 @@ var addPlatform = function addPlatform(x, y) {
     p = document.createElementNS('http://www.w3.org/2000/svg','rect');
     p.setAttribute('x', x);
     p.setAttribute('y', y);
-    p.setAttribute('fill', '#ffd700');
+    //p.setAttribute('fill', '#ffd700');
+    p.setAttribute('fill','red');
     p.setAttribute('stroke', '#c78201');
     p.setAttribute('width', PWIDTH);
     p.setAttribute('height', PHEIGHT);
@@ -116,12 +136,12 @@ var addPlatform = function addPlatform(x, y) {
     pic.appendChild(p);
     //console.log(platforms);
     rect = pic.createSVGRect();
-    rect.x = x + 30 ;
+    rect.x = x;
     rect.y = y + 10;
-    rect.height = 15;
-    rect.width = 20;
+    rect.height = 1;
+    rect.width = 80;
     rectA.push(rect);
-    console.log(rectA);
+    //console.log(rectA);
 };
 
 var popPlatforms = function popPlatforms(n) {
@@ -133,7 +153,7 @@ var popPlatforms = function popPlatforms(n) {
 };
 
 /** Returns index of platform hit, otherwise -1. */
-var checkPlatform = function checkPlatform() {
+/*var checkPlatform = function checkPlatform(thing) {
     for (i = 0; i < platforms.length; i++) {
 	p = platforms[i];
 	rect = pic.createSVGRect();
@@ -141,12 +161,12 @@ var checkPlatform = function checkPlatform() {
 	rect.y = parseInt(p.getAttribute('y')) + offsetTop;
 	rect.height = 4;
 	rect.width = 20;
-	if ( pic.checkIntersection(trump, rect) ) { 
+	if ( pic.checkIntersection(thing, rect) ) { 
 	    return i;
 	}
     }
     return -1;
-};
+};*/
 
 
 var movePlatforms = function movePlatforms() {
@@ -202,7 +222,7 @@ var slide_plats = function slide_plats() {
     for (i=0;i<platforms.length;i++) {
 	pY=parseInt(platforms[i].getAttribute('y'));
 	platforms[i].setAttribute('y', pY+1);
-	rectA[i].y=pY+1;
+	rectA[i].y += 1;
     }
     console.log('slide');
     //gen_plats();
@@ -210,11 +230,21 @@ var slide_plats = function slide_plats() {
 }
 
 var gen_plats = function gen_plats() {
-    var chance=Math.floor(Math.random()*10);
-    console.log(chance);
-    if (chance<3) {
+    var count = 0;
+    var hidden = false;
+    
+    while (count < platforms.length) {
+	currentY = parseInt(platforms[count].getAttribute('y'));
+	hidden = hidden || (currentY < 0);
+	if (hidden) break;
+	count++;
+    }
+    
+    //var chance=Math.floor(Math.random()*10);
+    //console.log(chance);
+    if (!hidden) {//chance<3) {
 	x = Math.floor(Math.random() * 300);
-	y = Math.floor(Math.random() * 80 - 80);
+	y = Math.floor(Math.random() * 180 - 180);
 
 	addPlatform(x,y);
 	console.log('gen');
@@ -239,5 +269,21 @@ var clean_platforms = function clean_platforms() {
     }
 }
 
+var check_platforms = function check_platforms(chin) {
+    var count = 0;
+    //console.log("HI");
+    while (count < rectA.length) {
+	
+	if (pic.checkIntersection(chin, rectA[count])) {
+	    //change = parseInt(platforms[count].getAttribute('y'))
+	    //break;
+	    return true;
+	}
+	//console.log(on);
+	count++;
+    }
+    //console.log(change + "THIS IS THE CHANGE");
+    return false; 
+}
 
 setup();
