@@ -25,8 +25,8 @@ var setup = function setup(e) {
     
     var up = false;
     var trumpX = 200;//pic.width.baseVal.value / 2;
-    var trumpY = 400;//pic.height.baseVal.value / 2;
-    var jumpLimit = 180;
+    var trumpY = 200;//pic.height.baseVal.value / 2;
+    var jumpLimit = 250;
     var curJump = 0;
     var down = 0;
     
@@ -47,7 +47,7 @@ var setup = function setup(e) {
 	trump.setAttribute('y', trumpY);
 
 	if ( up ) {
-	    trumpY -= 1;
+	    trumpY -= 2;
 	    curJump += 1;
 	}
 	else trumpY += 1;
@@ -71,7 +71,7 @@ var setup = function setup(e) {
 		console.log("TRUMPY " + (565 - trumpY));
 		scoreNum = parseInt(score.innerHTML);
 		score.innerHTML = scoreNum + 560 - trumpY;
-		move_platforms((400 - trumpY));
+		//move_platforms((400 - trumpY));
 		down = 0;
 		console.log(down);
 		clean_platforms();
@@ -86,6 +86,7 @@ var setup = function setup(e) {
 	//console.log(curJump);
     };
     intervalID = window.setInterval( trumpJump, 1 );
+    intervalID2= window.setInterval( slide_plats, 20);
 };
 
 var addPlatform = function addPlatform(x, y) {
@@ -181,6 +182,14 @@ var move_platforms = function move_platforms(changeY) {
     }
 }
 
+var slide_plats = function slide_plats() {
+    var pY=0;
+    for (i=0;i<platforms.length;i++) {
+	pY=parseInt(platforms[i].getAttribute('y'));
+	platforms[i].setAttribute('y', pY+1);
+	rectA[i].y=pY+1;
+    }
+}
 var clean_platforms = function clean_platforms() {
     var count = 0;
     var currentY = 0;
