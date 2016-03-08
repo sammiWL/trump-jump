@@ -11,7 +11,7 @@ var pic = document.getElementById('america');
 var offsetTop = pic.getBoundingClientRect().top - document.body.getBoundingClientRect().top;
 var offsetLeft = pic.getBoundingClientRect().left - document.body.getBoundingClientRect().left;
 var trump = document.getElementById('trump');
-var score = document.getElementById('score');
+//var score = document.getElementById('score');
 var platforms = [];
 var rectA = [];
 
@@ -19,10 +19,10 @@ var intervalID;
 
 var setup = function setup(e) {
     clearInterval(intervalID);
-    score.innerHTML = '0';
-    
+    var score = document.getElementById('score');
+    score.innerHTML = 0;
     var scoreNum = 0;
-
+    
     var up = false;
     var trumpX = 200;//pic.width.baseVal.value / 2;
     var trumpY = 400;//pic.height.baseVal.value / 2;
@@ -66,16 +66,18 @@ var setup = function setup(e) {
 	if (!up) {
 	    var cp = checkPlatform();
 	    if (cp != -1) {
-		//console.log("I MADE IT GREAT AGAIN");
-		//console.log("DOWN = " + down);
+		
 		up = !up;
 		curJump = 0;
 		//console.log("CHANGE " + (550 - trumpY));
 		console.log("TRUMPY " + (560 - trumpY));
+		scoreNum = parseInt(score.innerHTML);
+		score.innerHTML = scoreNum + 560 - trumpY;
 		move_platforms((400 - trumpY));
 		down = 0;
 		console.log(down);
 		clean_platforms();
+		
 		/*create_platforms();
 		 */
 	    }
