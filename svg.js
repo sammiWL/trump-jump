@@ -34,7 +34,7 @@ var setup = function setup(e) {
 	trumpX = e.clientX - 55;
     });
     
-    /**	
+    /*
 	for (i = 1; i < 2; i++) {
 	for (j = 0; j < 1; j++) {
 	addPlatform( 91*i, 585 - (j * 150) );
@@ -47,14 +47,12 @@ var setup = function setup(e) {
 	trump.setAttribute('y', trumpY);
 
 	if ( up ) {
-	    down = 0;
 	    trumpY -= 1;
 	    curJump += 1;
 	}
-	else {
-	    trumpY += 1;
-	    down += 1;
-	}
+	else trumpY += 1;
+	 
+	
 
 	if ( curJump >= jumpLimit || trumpY < 200) { up = false; }
 
@@ -70,7 +68,7 @@ var setup = function setup(e) {
 		up = !up;
 		curJump = 0;
 		//console.log("CHANGE " + (550 - trumpY));
-		console.log("TRUMPY " + (560 - trumpY));
+		console.log("TRUMPY " + (565 - trumpY));
 		scoreNum = parseInt(score.innerHTML);
 		score.innerHTML = scoreNum + 560 - trumpY;
 		move_platforms((400 - trumpY));
@@ -124,7 +122,6 @@ var checkPlatform = function checkPlatform() {
 	p = platforms[i];
 	rect = pic.createSVGRect();
 	rect.x = parseInt(p.getAttribute('x')) + offsetLeft + 0.1 * TWIDTH;
-	//console.log(rect.x);
 	rect.y = parseInt(p.getAttribute('y')) + offsetTop;
 	rect.height = 4;
 	rect.width = 20;
@@ -146,23 +143,21 @@ var create_platforms = function create_platform() {
     var hidden = false;
     var count = 0;
     var currentY = 0;
+
+    //checks if there platforms hidden that are ready to move down
     while (count < platforms.length) {
 	currentY = parseInt(platforms[count].getAttribute('y'));
-	//console.log(currentY);
-	//console.log("WHYYY");
-	//console.log(currentY);
 	hidden = hidden || (currentY < 0);
 	if (hidden) break;
 	count++;
     }
 
     var random = Math.floor(Math.random() * 2) + 1;
-    //console.log("RANDOM " + random);
 
+    //if there are no hidden platforms then a random number will be created
     if (!hidden) {
 	count = 0;
 	while (count < random) {
-	    //p=document.createElementNS('http://www.w3.org/2000/svg','rect');
 	    console.log(i);
 	    x = Math.floor(Math.random() * 300);
 	    y = Math.floor(Math.random() * 80 - 80);
@@ -179,9 +174,7 @@ var move_platforms = function move_platforms(changeY) {
     if (changeY > 70) {
 	while (count < platforms.length) {
 	    prevY = parseInt(platforms[count].getAttribute('y'));
-	    //console.log(prevY + changeY);
 	    platforms[count].setAttribute('y', prevY + changeY);
-	    //console.log(platforms);
 	    rectA[count].y = prevY + changeY + 10;
 	count++;
 	}
