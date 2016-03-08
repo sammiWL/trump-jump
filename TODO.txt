@@ -1,0 +1,4 @@
+- Loop audio
+- Better platform spacing, eliminate impossible intervals
+- Start/restart button
+- High score tracking 
