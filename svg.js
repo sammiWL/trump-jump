@@ -160,20 +160,21 @@ var create_platforms = function create_platform() {
     if (!hidden) {
 	count = 0;
 	while (count < random) {
-	    p=document.createElementNS('http://www.w3.org/2000/svg','rect');
+	    //p=document.createElementNS('http://www.w3.org/2000/svg','rect');
 	    console.log(i);
 	    x = Math.floor(Math.random() * 300);
 	    y = Math.floor(Math.random() * 80 - 80);
-	    p.setAttribute('x',x);
-	    p.setAttribute('y',y);
-	    p.setAttribute('fill','#ffd700');
-	    p.setAttribute('stroke','#c78201');
-	    p.setAttribute('width',70);
-	    p.setAttribute('height',15);
+
+	    p = document.createElementNS('http://www.w3.org/2000/svg','rect');
+	    p.setAttribute('x', x);
+	    p.setAttribute('y', y);
+	    p.setAttribute('fill', '#ffd700');
+	    p.setAttribute('stroke', '#c78201');
+	    p.setAttribute('width', PWIDTH);
+	    p.setAttribute('height', PHEIGHT);
 	    platforms.push(p);
 	    pic.appendChild(p);
-	    
-	    console.log(platforms);
+	    //console.log(platforms);
 	    rect = pic.createSVGRect();
 	    rect.x = x + 30 ;
 	    rect.y = y + 10;
