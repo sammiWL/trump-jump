@@ -25,8 +25,8 @@ var setup = function setup(e) {
     
     var up = false;
     var trumpX = 200;//pic.width.baseVal.value / 2;
-    var trumpY = 200;//pic.height.baseVal.value / 2;
-    var jumpLimit = 250;
+    var trumpY = 300;//pic.height.baseVal.value / 2;
+    var jumpLimit = 110;
     var curJump = 0;
     var down = 0;
     
@@ -47,18 +47,32 @@ var setup = function setup(e) {
 	trump.setAttribute('y', trumpY);
 
 	if ( up ) {
-	    trumpY -= 2;
-	    curJump += 1;
+	    if (trumpY>-10) {
+		trumpY -= 2;
+		curJump += 1;
+	    } else {
+		up=!up;
+	    }
 	}
 	else trumpY += 1;
 	 
 	
 
-	if ( curJump >= jumpLimit || trumpY < 200) { up = false; }
+	//if ( curJump >= jumpLimit || trumpY < 200) { up = false; }
+	if ( curJump >= jumpLimit) { up = false; }
 
 	if ( trumpY > pic.height.baseVal.value ) {
 	    console.log("Game Over");
 	    clearInterval(intervalID);
+	    clearInterval(intervalID2);
+	    clearInterval(intervalID3);
+	    var g=document.createElementNS('http://www.w3.org/2000/svg','image');
+	    g.setAttribute('height',PICHEIGHT);
+	    g.setAttribute('width',PICWIDTH);
+	    g.setAttribute('x',0);
+	    g.setAttribute('y',0);
+	    g.setAttributeNS('http://www.w3.org/1999/xlink','href','game_over.png');
+	    pic.appendChild(g);
 	}
 
 	if (!up) {
@@ -82,11 +96,12 @@ var setup = function setup(e) {
 
 	}
 	
-	create_platforms();
+	//create_platforms();
 	//console.log(curJump);
     };
     intervalID = window.setInterval( trumpJump, 1 );
     intervalID2= window.setInterval( slide_plats, 20);
+    intervalID3= window.setInterval( gen_plats, 500);
 };
 
 var addPlatform = function addPlatform(x, y) {
@@ -189,7 +204,23 @@ var slide_plats = function slide_plats() {
 	platforms[i].setAttribute('y', pY+1);
 	rectA[i].y=pY+1;
     }
+    console.log('slide');
+    //gen_plats();
+    console.log('post gen');
 }
+
+var gen_plats = function gen_plats() {
+    var chance=Math.floor(Math.random()*10);
+    console.log(chance);
+    if (chance<3) {
+	x = Math.floor(Math.random() * 300);
+	y = Math.floor(Math.random() * 80 - 80);
+
+	addPlatform(x,y);
+	console.log('gen');
+    }
+}
+
 var clean_platforms = function clean_platforms() {
     var count = 0;
     var currentY = 0;
