@@ -165,23 +165,7 @@ var create_platforms = function create_platform() {
 	    x = Math.floor(Math.random() * 300);
 	    y = Math.floor(Math.random() * 80 - 80);
 
-	    p = document.createElementNS('http://www.w3.org/2000/svg','rect');
-	    p.setAttribute('x', x);
-	    p.setAttribute('y', y);
-	    p.setAttribute('fill', '#ffd700');
-	    p.setAttribute('stroke', '#c78201');
-	    p.setAttribute('width', PWIDTH);
-	    p.setAttribute('height', PHEIGHT);
-	    platforms.push(p);
-	    pic.appendChild(p);
-	    //console.log(platforms);
-	    rect = pic.createSVGRect();
-	    rect.x = x + 30 ;
-	    rect.y = y + 10;
-	    rect.height = 15;
-	    rect.width = 20;
-	    rectA.push(rect);
-	    console.log(rectA);
+	    addPlatform(x,y);
 	    count++;
 	}
     }
