@@ -38,8 +38,9 @@ var setup = function setup(e) {
     var trumpChin = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     trumpChin.setAttribute("x", trumpX + 35); 
     trumpChin.setAttribute("y", trumpY + 35);
-    trumpChin.setAttribute("fill", "black");
-    trumpChin.setAttribute("stroke", "red");
+    //trumpChin.setAttribute("fill", "black");
+    //trumpChin.setAttribute("stroke", "red");
+    trumpChin.setAttribute("fill-opacity", 0);
     trumpChin.setAttribute("width","10");
     trumpChin.setAttribute("height","10");
     //img.setAttribute("xlink:href","dvd.jpg");
@@ -127,8 +128,7 @@ var addPlatform = function addPlatform(x, y) {
     p = document.createElementNS('http://www.w3.org/2000/svg','rect');
     p.setAttribute('x', x);
     p.setAttribute('y', y);
-    //p.setAttribute('fill', '#ffd700');
-    p.setAttribute('fill','red');
+    p.setAttribute('fill', '#ffd700');
     p.setAttribute('stroke', '#c78201');
     p.setAttribute('width', PWIDTH);
     p.setAttribute('height', PHEIGHT);
@@ -139,7 +139,7 @@ var addPlatform = function addPlatform(x, y) {
     rect.x = x;
     rect.y = y + 10;
     rect.height = 1;
-    rect.width = 80;
+    rect.width = PWIDTH;
     rectA.push(rect);
     //console.log(rectA);
 };
@@ -174,7 +174,7 @@ var movePlatforms = function movePlatforms() {
 };
 
 
-var create_platforms = function create_platform() {
+/*var create_platforms = function create_platform() {
     var x, y, p, i;
     var hidden = false;
     var count = 0;
@@ -202,7 +202,7 @@ var create_platforms = function create_platform() {
 	    count++;
 	}
     }
-}
+}*/
 
 var move_platforms = function move_platforms(changeY) {
     var count = 0;
@@ -244,7 +244,7 @@ var gen_plats = function gen_plats() {
     //console.log(chance);
     if (!hidden) {//chance<3) {
 	x = Math.floor(Math.random() * 300);
-	y = Math.floor(Math.random() * 180 - 180);
+	y = Math.floor(Math.random() * 110 - 110);
 
 	addPlatform(x,y);
 	console.log('gen');
