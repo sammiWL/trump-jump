@@ -80,7 +80,7 @@ var setup = function setup(e) {
     };
     
     intervalID  = window.setInterval( trumpJump, 1);
-    intervalID2 = window.setInterval( slide_plats, 20);
+    intervalID2 = window.setInterval( slide_plats, 10);
     intervalID3 = window.setInterval( gen_plats, 300);
 };
 
