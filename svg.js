@@ -20,7 +20,7 @@ var intervalID, intervalID2, intervalID3;
 
 var setup = function setup(e) {
     clearInterval(intervalID);
-    //var startTime = 
+    var startTime = getCurrentTime();
     var score = document.getElementById('score');
     score.innerHTML = 0;
     var scoreNum = 0;
@@ -70,13 +70,13 @@ var setup = function setup(e) {
 	if (!up) {
 	    if (checkPlatforms(trumpChin)) {
 		up = !up;
-		curJump = 0;
-		console.log(trumpX);
-		scoreNum = parseInt(score.innerHTML);
-		score.innerHTML = scoreNum + 560 - trumpY;
+		curJump = 0;		
 		clean_platforms(PICHEIGHT);	
 	    }
 	}
+
+	scoreNum = Math.floor((getCurrentTime() - startTime) / 100);
+	score.innerHTML = scoreNum;
     };
     
     intervalID  = window.setInterval( trumpJump, 1);
@@ -87,7 +87,15 @@ var setup = function setup(e) {
 var start = function start() {
     clearLoops();
     clean_platforms(0);
+    pic.innerHTML = '';
+    platforms = [];
+    rectA = [];
     setup();
+}
+
+var getCurrentTime = function getCurrentTime() {
+    var time = new Date();
+    return time.getTime();
 }
 
 var genFlag = function genFlag() {
@@ -210,16 +218,16 @@ var gen_plats = function gen_plats() {
 var clean_platforms = function clean_platforms(maxY) {
     var count = 0;
     var currentY = 0;
-    var rects = document.getElementsByTagName("rect");
-    console.log(rects);
     while (count < platforms.length) {
 	currentY = parseInt(platforms[count].getAttribute('y'));
 	console.log(currentY);
 	if (currentY > maxY) {
-	    pic.removeChild(platforms[count]);
+	    console.log(platforms[count]);
+	    if (pic.hasChildNodes()) {
+		pic.removeChild(platforms[count]);
+	    }
 	    platforms.shift();
 	    rectA.shift();
-	    rects.removeChild(rects.childNodes[0]);
 	}
 	else break;
     }
