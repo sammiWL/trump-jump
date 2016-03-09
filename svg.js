@@ -8,9 +8,6 @@ var TWIDTH = 80;
 var THEIGHT = 80;
 
 var pic = document.getElementById('america');
-var offsetTop = pic.getBoundingClientRect().top - document.body.getBoundingClientRect().top;
-var offsetLeft = pic.getBoundingClientRect().left - document.body.getBoundingClientRect().left;
-var trump = document.getElementById('trump');
 var reset = document.getElementById('setup');
 //var score = document.getElementById('score');
 var platforms = [];
@@ -19,7 +16,6 @@ var rectA = [];
 var intervalID, intervalID2, intervalID3;
 
 var setup = function setup(e) {
-    clearInterval(intervalID);
     var startTime = getCurrentTime();
     var score = document.getElementById('score');
     score.innerHTML = 0;
