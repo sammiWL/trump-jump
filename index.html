@@ -15,20 +15,21 @@
 		margin: 50px 50px 20px;
 		padding: 10px;
 		border: 1px solid black;
-		font-size: 20px;
-	}	
+	        font-size: 20px;
+	        diplay:inline;
+	}
+	p {
+	        display: inline;
+	}
   </style>
   <body>
-    <svg id="america" height="600" width="342">
-      <image x="-29" y="0" height="650" width="400" xlink:href="flag.svg" />
-      <image id="trump" x="200" y="500" height="80" width="80" xlink:href="mini-trump.png"/>
-    </svg>
-
-	<div id="box">Score: <p id="score"></p></div>
-
-	<audio controls autoplay loop>
-		<source src="rally.mp3" type="audio/mpeg">
-	</audio>
+    <svg id="america" height="600" width="342"></svg>
+      
+      <div id="box">Score: <p id="score"></p></div>
+      <audio controls autoplay loop hidden>
+	<source src="rally.mp3" type="audio/mpeg">
+      </audio>
+      <button id="setup">Start</button>
   </body>
   <script src="svg.js"></script>
 </html>
