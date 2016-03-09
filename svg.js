@@ -24,8 +24,8 @@ var setup = function setup(e) {
     var scoreNum = 0;
     
     var up = false;
-    var trumpX = 200;//pic.width.baseVal.value / 2;
-    var trumpY = 300;//pic.height.baseVal.value / 2;
+    var trumpX = 160;//pic.width.baseVal.value / 2;
+    var trumpY = 0;//pic.height.baseVal.value / 2;
     var jumpLimit = 110;
     var curJump = 0;
     var down = 0;
@@ -48,7 +48,7 @@ var setup = function setup(e) {
 
     
     pic.addEventListener('mousemove', function (e) {
-	trumpX = e.clientX - 55;
+	trumpX = e.clientX - 68;
     });
     
     /*
@@ -121,7 +121,7 @@ var setup = function setup(e) {
     };
     intervalID = window.setInterval( trumpJump, 1 );
     intervalID2= window.setInterval( slide_plats, 20);
-    intervalID3= window.setInterval( gen_plats, 500);
+    intervalID3= window.setInterval( gen_plats, 300);
 };
 
 var addPlatform = function addPlatform(x, y) {
@@ -244,7 +244,7 @@ var gen_plats = function gen_plats() {
     //console.log(chance);
     if (!hidden) {//chance<3) {
 	x = Math.floor(Math.random() * 300);
-	y = Math.floor(Math.random() * 110 - 110);
+	y = Math.floor(Math.random() * 80 - 110);
 
 	addPlatform(x,y);
 	console.log('gen');
