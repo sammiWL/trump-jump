@@ -149,7 +149,7 @@ var addPlatform = function addPlatform(x, y) {
 
     rect = pic.createSVGRect();
     rect.x = x;
-    rect.y = y + 10;
+    rect.y = y + 5;
     rect.height = 1;
     rect.width = PWIDTH;
     rectA.push(rect);
@@ -204,10 +204,10 @@ var gen_plats = function gen_plats() {
     }
     
     if (!hidden) {
-	x = Math.floor(Math.random() * 300);
+	x = Math.floor(Math.random() * 292);
 	y = Math.floor(Math.random() * 50 - 110);
 	addPlatform(x,y);
-	console.log('gen');
+	//console.log('gen');
     }
 }
 
@@ -216,12 +216,9 @@ var clean_platforms = function clean_platforms(maxY) {
     var currentY = 0;
     while (count < platforms.length) {
 	currentY = parseInt(platforms[count].getAttribute('y'));
-	console.log(currentY);
+	//console.log(currentY);
 	if (currentY > maxY) {
-	    console.log(platforms[count]);
-	    if (pic.hasChildNodes()) {
-		pic.removeChild(platforms[count]);
-	    }
+	    pic.removeChild(platforms[count]);
 	    platforms.shift();
 	    rectA.shift();
 	}
