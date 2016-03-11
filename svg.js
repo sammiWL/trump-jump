@@ -9,6 +9,9 @@ var THEIGHT = 80;
 
 var pic = document.getElementById('america');
 var reset = document.getElementById('setup');
+var scoreBoard = document.getElementById('score-board');
+var scores = [];
+var minBoardScore = 0;
 //var score = document.getElementById('score');
 var platforms = [];
 var rectA = [];
@@ -59,6 +62,14 @@ var setup = function setup(e) {
 
 	if ( trumpY > pic.height.baseVal.value ) {
 	    console.log("Game Over");
+		if ( scores.length < 10 || scoreNum > minBoardScore ) {
+			if ( scoreNum < scores[1] ) {
+				minBoardScore = scoreNum;
+			}
+			scores.push( scoreNum );
+			scores.sort();
+			updateScores();
+		}
 	    clearLoops();
 	    genGameOver();
 	}
@@ -233,6 +244,20 @@ var checkPlatforms = function checkPlatforms(chin) {
 	count++;
     }
     return false; 
+}
+
+var updateScores = function updateScores() {
+	while ( scoreBoard.firstChild ) {
+		console.log('bye');
+	    scoreBoard.removeChild( scoreBoard.firstChild );
+	}
+	
+	for (i=0; i < scores.length && i < 10; i++) {
+		var score = document.createElement('li');
+		var text = document.createTextNode( scores[scores.length-1-i].toString() );
+		score.appendChild(text);
+		scoreBoard.appendChild(score);
+	}
 }
 
 setup();

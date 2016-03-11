@@ -10,35 +10,58 @@
 	        margin: 10px 20px 0px;
 	        cursor: none;
 	}
+	h1 {
+		float: right;
+		margin: 10px 100px 0px;
+		color: white;
+		background-color: red;
+		font-size: 30px;
+		padding: 20px 100px 20px;
+		border: 5px solid blue;
+	}
 	#box {
-		float: left;
-		margin: 50px 50px 20px;
-		padding: 10px;
+		float: right;
+		clear: right;
+		margin: 20px 100px 20px;
+		padding: 20px;
 		border: 1px solid black;
-	        font-size: 20px;
+	        font-size: 50px;
 	        diplay:inline;
 	}
 	p {
 	        display: inline;
 	}
+	#high-scores {
+		float: right;
+		clear: right;
+		margin: 0px 100px 0px;
+	}
+	#setup {
+		float: right;
+		clear: right;
+		margin: 20px 100px 0px;
+		font-size: 20px;
+	}
   </style>
   <body>
     <svg id="america" height="600" width="342"></svg>
       
+	<h1>TRUMP JUMP</h1>
+
+	<button id="setup">Start</button>
+
 	<div id="box">Score: <p id="score"></p></div>
 
 	<div id="high-scores">
 		<h2>High Scores</h2>
-		<ol>
-			<li>100</li>
-			<li>200</li>
+		<ol id="score-board">
 		</ol>
 	</div>
 
       <audio controls autoplay loop hidden>
 		<source src="rally.mp3" type="audio/mpeg">
       </audio>
-      <button id="setup">Start</button>
+      
   </body>
   <script src="svg.js"></script>
 </html>
