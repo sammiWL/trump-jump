@@ -31,7 +31,7 @@ var setup = function setup(e) {
     var curJump = 0;
     var down = 0;
 
-
+    genLogo();
     genFlag();
     var trump = genTrump();
     var trumpChin = genTrumpChin();
@@ -110,7 +110,7 @@ var genFlag = function genFlag() {
     flag.setAttribute("height", 650);
     flag.setAttribute("width", 400);
     flag.setAttribute("x", -29);
-    flag.setAttribute("y", 0);
+    flag.setAttribute("y", 90);
     flag.setAttributeNS('http://www.w3.org/1999/xlink','href','flag.svg');
     pic.appendChild(flag);
 }
@@ -124,6 +124,17 @@ var genTrump = function genTrump() {
     return trump;
 }
 
+var genLogo = function genLogo() {
+    var logo = document.createElementNS("http://www.w3.org/2000/svg", 'image');
+    logo.setAttribute("width", 342);
+    logo.setAttribute("height", 200);
+    logo.setAttribute("x",0);
+    logo.setAttribute("y",-55);
+    logo.setAttributeNS('http://www.w3.org/1999/xlink','href','TRUMPJUMP.png');
+    pic.appendChild(logo);
+    return logo;
+}
+	
 var genTrumpChin = function genTrumpChin() {
     var trumpChin = document.createElementNS("http://www.w3.org/2000/svg", "rect");
     trumpChin.setAttribute("x", 196); 
