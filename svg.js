@@ -152,7 +152,7 @@ var genGameOver = function genGameOver() {
     g.setAttribute('height',PICHEIGHT);
     g.setAttribute('width',PICWIDTH);
     g.setAttribute('x',0);
-    g.setAttribute('y',0);
+    g.setAttribute('y',50);
     g.setAttributeNS('http://www.w3.org/1999/xlink','href','game_over.png');
     pic.appendChild(g);
 }
